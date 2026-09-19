@@ -1,35 +1,5 @@
-# React + TypeScript + Vite
+This Repository is a web app Academic project aim to make renewal and application of scholarship much easier. This use React vite with Typescript and TailwindCss for frontend while Supabase as the Database. To able to use this you all you need to do is scan your id and the information within the school database would directly send the information to the filter and the filter would analyze the all information given like " is the client already has active scholarship? " , " is the client's grade reached the grade requirements ". If the application has not reach the requirements it would message the admin to tell that the application is failed, the admin would contact the client to message them that their application is rejected for this problem. If the application is all great for the filter, the filter would send an result to the admin to double check the information for unsure qualification this would improve the accuracy of the application. The admin would approved the application and message the client that their application is approved. 
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+The user also can check the process using the website progression tracker. 
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
-
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
-
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+(We don't have access on the school database)
