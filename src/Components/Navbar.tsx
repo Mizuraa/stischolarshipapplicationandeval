@@ -5,7 +5,7 @@ export default function Navbar() {
         <div className="bg-blue-500 h-16 relative flex items-center px-20">
           {/* NAVBAR */}
           <div className="flex items-center gap-4">
-            <a href="home">
+            <a href="/Home">
               <img src="STILogo.png" className="h-10" />
             </a>
             <div className="text-xs italic font-medium leading-tight">
@@ -14,10 +14,10 @@ export default function Navbar() {
             </div>
           </div>
           <nav className="flex flex-row items-center gap-10 text-amber-50 text-xs italic font-medium ml-auto">
-            <a href="*">Programs</a>
-            <a href="*">Application Guide</a>
-            <a href="*">Requirements</a>
-            <a href="*" className="bg-yellow-400 px-3 py-2">
+            <a href="/Pages/Programs">Programs</a>
+            <a href="/Pages/Applicationguide">Application Guide</a>
+            <a href="/Pages/Requirements">Requirements</a>
+            <a href="/Pages/Application" className="bg-yellow-400 px-3 py-2">
               Start Application &rarr;
             </a>
           </nav>

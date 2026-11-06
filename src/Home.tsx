@@ -1,8 +1,10 @@
 import Breadcrumbs from "./Components/Breadcrumps";
+import Footer from "./Components/Footer";
 import Navbar from "./Components/Navbar";
 import Heropage from "./Pages/Heropage";
+import Scholarships from "./Pages/Scholarships";
 
-export default function App() {
+export default function Home() {
   return (
     <>
       <body className="fixed inset-0 h-screen w-screen">
@@ -12,8 +14,10 @@ export default function App() {
         <Breadcrumbs></Breadcrumbs>
         {/* HEROPAGE */}
         <Heropage></Heropage>
-        {/* WELCOMEPAGE */}
+        {/* SCHOLARSHIPS */}
+        <Scholarships></Scholarships>
         {/* FOOTER */}
+        <Footer></Footer>
       </body>
     </>
   );

@@ -22,7 +22,7 @@ export default function Heropage() {
             {/* Buttons */}
             <div className="flex flex-row gap-4 pt-4">
               <button className="bg-yellow-400 text-blue-950 font-semibold rounded-2xl px-6 py-3 shadow-md hover:bg-yellow-200 transition">
-                I'm a new Student
+                I'm a new Student &rarr;
               </button>
               <button className="bg-white text-blue-950 font-semibold rounded-2xl px-6 py-3 shadow-md hover:bg-yellow-200 transition">
                 I'm an old Student
