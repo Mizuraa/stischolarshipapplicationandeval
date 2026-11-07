@@ -1,3 +1,5 @@
 export default function Applicationguide() {
-  return <></>;
+  return <>
+  <h1>Inprogress</h1>
+  </>;
 }

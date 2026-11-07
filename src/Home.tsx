@@ -3,6 +3,7 @@ import Footer from "./Components/Footer";
 import Navbar from "./Components/Navbar";
 import Heropage from "./Pages/Heropage";
 import Scholarships from "./Pages/Scholarships";
+import { Outlet } from "react-router-dom";
 
 export default function Home() {
   return (
@@ -13,6 +14,9 @@ export default function Home() {
         {/*BREADCRUMPS*/}
         <Breadcrumbs></Breadcrumbs>
         {/* HEROPAGE */}
+        <main className="p-4">
+          <Outlet /> {/* This loads your pages OR your ErrorBoundary */}
+        </main>
         <Heropage></Heropage>
         {/* SCHOLARSHIPS */}
         <Scholarships></Scholarships>

@@ -1,3 +1,8 @@
 export default function Scholarships() {
-  return <></>;
+  return (
+    <>
+      {" "}
+      <h1>Inprogress</h1>
+    </>
+  );
 }

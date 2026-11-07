@@ -5,8 +5,8 @@ export default function Navbar() {
         <div className="bg-blue-500 h-16 relative flex items-center px-20">
           {/* NAVBAR */}
           <div className="flex items-center gap-4">
-            <a href="/Home">
-              <img src="STILogo.png" className="h-10" />
+            <a href="">
+              <img src="src\assets\STILogo.png" className="h-10" />
             </a>
             <div className="text-xs italic font-medium leading-tight">
               <p>Scholarships & educational assistance</p>

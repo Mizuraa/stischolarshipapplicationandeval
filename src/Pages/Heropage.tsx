@@ -34,7 +34,7 @@ export default function Heropage() {
           <div className="flex-1 flex justify-center lg:justify-end">
             <img
               className="w-full max-w-md lg:max-w-lg h-auto rounded-2xl shadow-2xl object-cover"
-              src="FrontSchool.jpg"
+              src="src\assets\FrontSchool.jpg"
               alt="STI School"
             />
           </div>
