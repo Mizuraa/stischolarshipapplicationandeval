@@ -1,3 +1,4 @@
+import FrontSchool from "../assets/FrontSchool.jpg"
 export default function Heropage() {
   return (
     <>
@@ -34,7 +35,7 @@ export default function Heropage() {
           <div className="flex-1 flex justify-center lg:justify-end">
             <img
               className="w-full max-w-md lg:max-w-lg h-auto rounded-2xl shadow-2xl object-cover"
-              src="src\assets\FrontSchool.jpg"
+              src={FrontSchool}
               alt="STI School"
             />
           </div>

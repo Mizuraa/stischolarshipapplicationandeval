@@ -1,3 +1,4 @@
+import STILogo from "../assets/STILogo.png";
 export default function Navbar() {
   return (
     <>
@@ -6,7 +7,7 @@ export default function Navbar() {
           {/* NAVBAR */}
           <div className="flex items-center gap-4">
             <a href="">
-              <img src="src\assets\STILogo.png" className="h-10" />
+              <img src={STILogo} className="h-10" />
             </a>
             <div className="text-xs italic font-medium leading-tight">
               <p>Scholarships & educational assistance</p>
