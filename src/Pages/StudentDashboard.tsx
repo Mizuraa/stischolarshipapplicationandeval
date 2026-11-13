@@ -139,7 +139,7 @@ export default function StudentDashboard() {
             {(application.Reviewer_Notes ||
               application.Validator_Notes ||
               application.Rejection_Reason) && (
-              <div className="mt-4 pt-4 border-t border-slate-100 bg-amber-50/60 p-4 rounded-xl border border-amber-200 text-xs">
+              <div className="mt-4 pt-4 border-t bg-amber-50/60 p-4 rounded-xl border border-amber-200 text-xs">
                 <h4 className="font-bold text-amber-900 mb-1">
                   Committee Feedback & Notes:
                 </h4>

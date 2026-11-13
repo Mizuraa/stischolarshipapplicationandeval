@@ -5,7 +5,6 @@ import {
 } from "react-router-dom";
 import Layout from "./Layout";
 import Home from "./Home";
-import Heropage from "./Pages/Heropage";
 import Scholarships from "./Pages/Scholarships";
 import Programs from "./Pages/Programs";
 import Applicationguide from "./Pages/Applicationguide";
