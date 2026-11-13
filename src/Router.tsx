@@ -3,6 +3,7 @@ import {
   useRouteError,
   isRouteErrorResponse,
 } from "react-router-dom";
+import Layout from "./Layout";
 import Home from "./Home";
 import Heropage from "./Pages/Heropage";
 import Scholarships from "./Pages/Scholarships";
@@ -10,10 +11,16 @@ import Programs from "./Pages/Programs";
 import Applicationguide from "./Pages/Applicationguide";
 import Requirements from "./Pages/Requirements";
 import Application from "./Pages/Application";
+import HelpCenter from "./Pages/HelpCenter";
+import PrivacyPolicy from "./Pages/PrivacyPolicy";
+import VisitCampus from "./Pages/VisitCampus";
+import StudentDashboard from "./Pages/StudentDashboard";
+import ProtectedRoute from "./Components/ProtectedRoute";
+import AdminDashboard from "./Pages/AdminDashboard";
 
 function RootErrorBoundary() {
   const error = useRouteError();
-  console.error(error); // Logs error details to the developer console
+  console.error(error);
 
   let errorMessage = "An unexpected error occurred.";
   if (isRouteErrorResponse(error)) {
@@ -25,7 +32,7 @@ function RootErrorBoundary() {
   return (
     <div className="p-8 text-center bg-red-50 border border-red-200 rounded-lg max-w-xl mx-auto my-10">
       <h2 className="text-xl font-bold text-red-700 mb-2">
-        Oops! My heart went di pa tapos.
+        Oops! An unexpected error occurred.
       </h2>
       <p className="text-gray-600">{errorMessage}</p>
     </div>
@@ -35,32 +42,64 @@ function RootErrorBoundary() {
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
-    errorElement: <RootErrorBoundary />, // Catches crashes and renders them inside Home's layout
+    element: <Layout />,
+    errorElement: <RootErrorBoundary />,
     children: [
       {
-        index: true, // Renders Heropage by default at the root URL "/"
-        element: <Heropage />,
+        index: true,
+        element: <Home />,
       },
       {
-        path: "Schorlarships", // URL will be "/Schorlarships"
+        path: "Schorlarships",
         element: <Scholarships />,
       },
       {
-        path: "Programs", // URL will be "/Programs"
+        path: "Programs",
         element: <Programs />,
       },
       {
-        path: "ApplicationGuide", // URL will be "/ApplicationGuide"
+        path: "ApplicationGuide",
         element: <Applicationguide />,
       },
       {
-        path: "Requirements", // URL will be "/Requirements"
+        path: "Requirements",
         element: <Requirements />,
       },
       {
-        path: "Application", // URL will be "/Application"
+        path: "Application",
         element: <Application />,
+      },
+      {
+        path: "help",
+        element: <HelpCenter />,
+      },
+      {
+        path: "privacy",
+        element: <PrivacyPolicy />,
+      },
+      {
+        path: "visit-campus",
+        element: <VisitCampus />,
+      },
+      {
+        path: "dashboard",
+        element: <StudentDashboard />,
+      },
+      {
+        path: "dashboard",
+        element: (
+          <ProtectedRoute>
+            <StudentDashboard />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "admin/dashboard",
+        element: (
+          <ProtectedRoute requireAdmin={true}>
+            <AdminDashboard />
+          </ProtectedRoute>
+        ),
       },
     ],
   },
