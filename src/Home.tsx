@@ -7,9 +7,7 @@ export default function Home() {
   return (
     <div className="flex flex-col w-full animate-fadeIn">
       <Heropage />
-      <Tracker applicantType={"new"} setApplicantType={function (type: "new" | "old"): void {
-        throw new Error("Function not implemented.");
-      } } />
+      <Tracker />
       <Scholarships />
       <Know />
     </div>

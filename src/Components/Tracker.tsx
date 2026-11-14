@@ -1,11 +1,11 @@
 interface TrackerProps {
-  applicantType: "new" | "old";
-  setApplicantType: (type: "new" | "old") => void;
+  applicantType?: "new" | "old";
+  setApplicantType?: (type: "new" | "old") => void;
 }
 
 export default function Tracker({
-  applicantType,
-  setApplicantType,
+  applicantType = "new",
+  setApplicantType = () => {},
 }: TrackerProps) {
   return (
     <div className="space-y-6 mb-8">
