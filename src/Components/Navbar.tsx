@@ -51,6 +51,13 @@ export default function Navbar() {
           Requirements
         </Link>
         <Link
+          to="/tracker"
+          onClick={handleLogoClick}
+          className="hover:text-yellow-300 transition-colors font-bold text-yellow-300"
+        >
+          Track Your Application
+        </Link>
+        <Link
           to="/Application"
           onClick={handleLogoClick}
           className="bg-yellow-400 text-blue-950 font-bold px-4 py-2 rounded-lg shadow hover:bg-yellow-300 transition-all transform hover:-translate-y-0.5"

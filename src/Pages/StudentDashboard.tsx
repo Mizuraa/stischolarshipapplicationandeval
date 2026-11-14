@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../lib/supabase";
 import Tracker from "../Components/Tracker";
 
 export default function StudentDashboard() {
+  const navigate = useNavigate();
   const [application, setApplication] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
@@ -19,17 +20,22 @@ export default function StudentDashboard() {
       }
 
       const { data, error } = await supabase
-        .from("Application")
+        .from("application")
         .select(
           `
-          *,
-          STUDENT_INFO (
-            Student_Name,
-            Program
+          id,
+          status,
+          form_data,
+          reviewer_notes,
+          validator_notes,
+          rejection_reason,
+          student_info (
+            student_name,
+            program
           )
         `,
         )
-        .eq("Student_Id", user.id)
+        .eq("student_id", user.id)
         .maybeSingle();
 
       if (!error && data) {
@@ -41,9 +47,14 @@ export default function StudentDashboard() {
     fetchUserApplication();
   }, []);
 
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    navigate("/login");
+  };
+
   if (loading) {
     return (
-      <div className="p-12 text-center text-slate-500">
+      <div className="p-12 text-center text-slate-500 text-xs">
         Loading your dashboard...
       </div>
     );
@@ -58,8 +69,8 @@ export default function StudentDashboard() {
           </span>
           <h1 className="text-2xl font-extrabold text-slate-900 mt-2">
             Welcome back
-            {application?.STUDENT_INFO?.Student_Name
-              ? `, ${application.STUDENT_INFO.Student_Name}`
+            {application?.student_info?.student_name
+              ? `, ${application.student_info.student_name}`
               : ""}
             !
           </h1>
@@ -69,15 +80,23 @@ export default function StudentDashboard() {
           </p>
         </div>
 
-        <Link
-          to="/Application"
-          className="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2.5 px-4 rounded-xl transition shadow-sm"
-        >
-          {application
-            ? "View / Edit Application Form"
-            : "Start New Application"}{" "}
-          &rarr;
-        </Link>
+        <div className="flex items-center gap-3">
+          <Link
+            to="/Application"
+            className="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2.5 px-4 rounded-xl transition shadow-sm cursor-pointer"
+          >
+            {application
+              ? "View / Edit Application Form"
+              : "Start New Application"}{" "}
+            &rarr;
+          </Link>
+          <button
+            onClick={handleLogout}
+            className="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold py-2.5 px-4 rounded-xl transition border border-slate-200 cursor-pointer"
+          >
+            Sign Out
+          </button>
+        </div>
       </div>
 
       {!application ? (
@@ -93,15 +112,13 @@ export default function StudentDashboard() {
             to="/Application"
             className="inline-block bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2.5 px-6 rounded-xl transition"
           >
-            Go to Application Form &rarr;
+            Go to Application Form 
           </Link>
         </div>
       ) : (
         <div className="space-y-6">
-          {/* Live Progress Tracker */}
           <Tracker />
 
-          {/* Application Details Summary Card */}
           <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs space-y-4">
             <h3 className="font-bold text-slate-900 text-sm border-b pb-3">
               Application Summary
@@ -112,7 +129,7 @@ export default function StudentDashboard() {
                   Scholarship Program
                 </span>
                 <span className="font-semibold text-slate-700">
-                  {application.Form_Data?.selectedProgram || "N/A"}
+                  {application.form_data?.selectedProgram || "N/A"}
                 </span>
               </div>
               <div>
@@ -120,8 +137,8 @@ export default function StudentDashboard() {
                   Enrolled Course
                 </span>
                 <span className="font-semibold text-slate-700">
-                  {application.STUDENT_INFO?.Program ||
-                    application.Form_Data?.enrolledProgram ||
+                  {application.student_info?.program ||
+                    application.form_data?.enrolledProgram ||
                     "N/A"}
                 </span>
               </div>
@@ -130,23 +147,24 @@ export default function StudentDashboard() {
                   Current Status
                 </span>
                 <span className="font-bold uppercase tracking-wide text-blue-600 bg-blue-50 px-2 py-0.5 rounded">
-                  {application.Status.replace(/_/g, " ")}
+                  {application.status
+                    ? application.status.replace(/_/g, " ")
+                    : "draft"}
                 </span>
               </div>
             </div>
 
-            {/* Reviewer / Validator Feedback Notes */}
-            {(application.Reviewer_Notes ||
-              application.Validator_Notes ||
-              application.Rejection_Reason) && (
+            {(application.reviewer_notes ||
+              application.validator_notes ||
+              application.rejection_reason) && (
               <div className="mt-4 pt-4 border-t bg-amber-50/60 p-4 rounded-xl border border-amber-200 text-xs">
                 <h4 className="font-bold text-amber-900 mb-1">
                   Committee Feedback & Notes:
                 </h4>
                 <p className="text-amber-800 leading-relaxed">
-                  {application.Reviewer_Notes ||
-                    application.Validator_Notes ||
-                    application.Rejection_Reason}
+                  {application.reviewer_notes ||
+                    application.validator_notes ||
+                    application.rejection_reason}
                 </p>
               </div>
             )}

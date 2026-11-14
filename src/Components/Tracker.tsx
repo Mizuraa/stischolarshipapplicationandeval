@@ -1,68 +1,69 @@
-import { Link } from "react-router-dom";
+interface TrackerProps {
+  applicantType: "new" | "old";
+  setApplicantType: (type: "new" | "old") => void;
+}
 
-export default function Tracker() {
+export default function Tracker({
+  applicantType,
+  setApplicantType,
+}: TrackerProps) {
   return (
-    <section className="max-w-7xl mx-auto px-6 lg:px-20 -mt-8 relative z-10 mb-12 w-full">
-      <div className="bg-white rounded-2xl shadow-xl border border-slate-200 p-8">
-        <div className="mb-6">
-          <span className="text-xs font-bold text-blue-600 uppercase tracking-widest bg-blue-50 px-2.5 py-1 rounded">
-            START HERE
+    <div className="space-y-6 mb-8">
+      <div className="text-center">
+        <h2 className="text-lg font-extrabold text-slate-900">
+          One application. The right path for you.
+        </h2>
+      </div>
+
+      {/* New vs Old Selector Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* New Student Card */}
+        <div
+          onClick={() => setApplicantType("new")}
+          className={`p-6 rounded-xl border-2 cursor-pointer transition ${
+            applicantType === "new"
+              ? "border-blue-900 bg-blue-50/40 shadow-sm"
+              : "border-slate-200 bg-white hover:border-slate-300"
+          }`}
+        >
+          <span className="text-[10px] font-bold text-blue-700 bg-blue-100 px-2 py-0.5 rounded uppercase">
+            First-Time Applicant
           </span>
-          <h2 className="text-2xl font-bold text-slate-900 mt-2">
-            One application. The right path for you.
-          </h2>
+          <h3 className="font-bold text-slate-900 text-sm mt-2">New student</h3>
+          <p className="text-[11px] text-slate-600 mt-1 mb-4 leading-relaxed">
+            Enter your application for incoming freshman, transferee, or
+            second-year students. Choose your program and upload required
+            documents.
+          </p>
+          <div className="inline-flex items-center gap-2 text-xs font-bold bg-blue-900 text-white px-4 py-2 rounded-lg shadow-sm">
+            Start a new application &rarr;
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* New Student Card */}
-          <div className="bg-slate-50 border border-slate-200 rounded-xl p-6 flex flex-col justify-between hover:border-blue-400 transition-all">
-            <div>
-              <span className="text-xs font-semibold text-blue-600 bg-blue-100 px-2.5 py-0.5 rounded">
-                First-Time Applicant
-              </span>
-              <h3 className="text-base font-bold text-slate-900 mt-3">
-                New student
-              </h3>
-              <p className="text-xs text-gray-600 mt-2 leading-relaxed">
-                Enter your application for incoming freshman, transferee, or
-                second-year students. Choose your program and upload required
-                documents.
-              </p>
-            </div>
-            <Link
-              to="/Application"
-              className="mt-6 bg-blue-900 hover:bg-blue-800 text-white font-medium px-4 py-2.5 rounded-lg text-xs flex items-center justify-between transition"
-            >
-              <span>Start a new application</span>
-              <span>&rarr;</span>
-            </Link>
-          </div>
-
-          {/* Old / Returning Student Card */}
-          <div className="bg-slate-50 border border-slate-200 rounded-xl p-6 flex flex-col justify-between hover:border-blue-400 transition-all">
-            <div>
-              <span className="text-xs font-semibold text-emerald-600 bg-emerald-100 px-2.5 py-0.5 rounded">
-                Renewal / Retention
-              </span>
-              <h3 className="text-base font-bold text-slate-900 mt-3">
-                Old / returning student
-              </h3>
-              <p className="text-xs text-gray-600 mt-2 leading-relaxed">
-                Enter your student ID to review saved details, check grade info,
-                complete the annual family questionnaire, and upload applicable
-                requirements.
-              </p>
-            </div>
-            <Link
-              to="/Application"
-              className="mt-6 bg-blue-900 hover:bg-blue-800 text-white font-medium px-4 py-2.5 rounded-lg text-xs flex items-center justify-between transition"
-            >
-              <span>Continue student inquiry</span>
-              <span>&rarr;</span>
-            </Link>
+        {/* Old / Returning Student Card */}
+        <div
+          onClick={() => setApplicantType("old")}
+          className={`p-6 rounded-xl border-2 cursor-pointer transition ${
+            applicantType === "old"
+              ? "border-blue-900 bg-blue-50/40 shadow-sm"
+              : "border-slate-200 bg-white hover:border-slate-300"
+          }`}
+        >
+          <span className="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded uppercase">
+            Renewal / Retention
+          </span>
+          <h3 className="font-bold text-slate-900 text-sm mt-2">
+            Old / returning student
+          </h3>
+          <p className="text-[11px] text-slate-600 mt-1 mb-4 leading-relaxed">
+            Enter your student ID to review saved details, check grade info,
+            complete renewal requirements, and view scholarship history.
+          </p>
+          <div className="inline-flex items-center gap-2 text-xs font-bold bg-blue-900 text-white px-4 py-2 rounded-lg shadow-sm">
+            Continue student inquiry &rarr;
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
